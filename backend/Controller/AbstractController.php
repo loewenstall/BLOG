@@ -5,14 +5,14 @@ namespace BLOG\backend\Controller;
 abstract class AbstractController {
 
     /**
+     * @var string
+     */
+    private $action;
+
+    /**
      * @var \TYPO3\Fluid\View\StandaloneView
      */
     public $view;
-
-    /**
-     * @var string
-     */
-    protected $action;
 
     /**
      * @var \BLOG\core\Service\RequestService
@@ -20,9 +20,9 @@ abstract class AbstractController {
     protected $request;
 
     /**
-     * @var \BLOG\core\Repository\BlogRepository
+     * @var \BLOG\core\Service\PdoDbService
      */
-    protected $postRepository;
+    protected $database;
 
     /**
      * @var \BLOG\backend\Controller\SessionController
@@ -30,14 +30,19 @@ abstract class AbstractController {
     protected $session;
 
     /**
-     * @var \BLOG\core\Service\PdoDbService
-     */
-    protected $database;
-
-    /**
      * @var array
      */
     protected $sysConf;
+
+    /**
+     * @var \BLOG\core\Repository\BlogRepository
+     */
+    protected $blogRepository;
+
+    /**
+     * @var \BLOG\core\Repository\PostRepository
+     */
+    protected $postRepository;
 
     /**
      * @var array
@@ -154,6 +159,15 @@ abstract class AbstractController {
      */
     public function setAction($name) {
         $this->action = $name;
+    }
+
+    /**
+     * get current action name
+     *
+     * @return string
+     */
+    public function getAction() {
+        return $this->action;
     }
 
     /**
