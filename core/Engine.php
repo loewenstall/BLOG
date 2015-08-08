@@ -4,12 +4,12 @@ namespace BLOG\core;
 
 use \BLOG\core\Interfaces\ControllerInterface,
     \BLOG\core\Model\BlogModel,
-	\BLOG\core\Controller\BlogController,
-	\BLOG\core\Controller\ServiceController,
+    \BLOG\core\Controller\PostController,
+    \BLOG\core\Controller\ServiceController,
     \BLOG\core\Service\LocallangService,
-    \BLOG\core\Repository\BlogRepository,
     \BLOG\core\Service\RequestService,
-    \BLOG\core\Service\PdoDbService;
+    \BLOG\core\Service\PdoDbService,
+    \BLOG\core\Repository\BlogRepository;
 
 class Engine {
 
@@ -170,7 +170,9 @@ class Engine {
      * @todo throw exeption if classname doesn't exist or is not loaded
      */
     private function initializeController() {
-        $this->controller = new BlogController($this->action, $this->view, $this->request, $this->database, $this->sysConf);
+        $controllerName = ($this->request->hasArgmunet('controller')) ? $this->request->getArgmunet('controller') : 'Post';
+        $controllerClassName = '\\BLOG\\core\\Controller\\' . ucfirst($controllerName) . 'Controller';
+        $this->controller = new $controllerClassName($this->action, $this->view, $this->request, $this->database, $this->sysConf);
 
         $actionName = $this->action . 'Action';
         $actionParam = ($this->action == 'show' && isset($_GET['post'])) ? $_GET['post'] : '';
