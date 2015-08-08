@@ -5,14 +5,14 @@ namespace BLOG\core\Abstracts;
 abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInterface {
 
     /**
-     * @var \TYPO3\Fluid\View\StandaloneView
-     */
-    public $view;
-
-    /**
      * @var string
      */
     protected $action;
+
+    /**
+     * @var \TYPO3\Fluid\View\StandaloneView
+     */
+    public $view;
 
     /**
      * @var \BLOG\core\Service\RequestService
@@ -20,14 +20,14 @@ abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInt
     protected $request;
 
     /**
-     * @var \BLOG\core\Repository\BlogRepository
-     */
-    protected $blogRepository;
-
-    /**
      * @var array
      */
     protected $sysConf;
+
+    /**
+     * @var \BLOG\core\Repository\PostRepository
+     */
+    protected $postRepository;
 
     /**
      * @param string $action
@@ -40,8 +40,8 @@ abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInt
         $this->action = $action;
         $this->view = $view;
         $this->request = $request;
-        $this->blogRepository = new \BLOG\core\Repository\BlogRepository($database, $request);
         $this->sysConf = $config;
+        $this->postRepository = new \BLOG\core\Repository\PostRepository($database, $request);
 
         $this->initializeAction();
     }

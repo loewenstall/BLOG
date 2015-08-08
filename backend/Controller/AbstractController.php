@@ -22,7 +22,7 @@ abstract class AbstractController {
     /**
      * @var \BLOG\core\Repository\BlogRepository
      */
-    protected $blogRepository;
+    protected $postRepository;
 
     /**
      * @var \BLOG\backend\Controller\SessionController
@@ -78,7 +78,7 @@ abstract class AbstractController {
      * let controllers call a custom constructor
      */
     public function initializeAction() {
-        $this->blogRepository = new \BLOG\core\Repository\BlogRepository($this->database, $this->request);
+        $this->postRepository = new \BLOG\core\Repository\PostRepository($this->database, $this->request);
         $this->lllService = new \BLOG\core\Service\LocallangService($this->sysConf['language']);
     }
 

@@ -4,21 +4,41 @@
 <div class="content__container">
 	<h1>BLOG posts</h1>
 	<div class="dashboard__module">
-		<h2>Edit post "{post.title}", ID {post.id}</h2>
+		<h2>Edit post ID {post.id}: "{post.title}", created: <f:format.date format="d.m.Y H:i">{post.crdate}</f:format.date></h2>
 
 		<form name="editForm" action="foo" method="post">
-			<div class="form__row">
-				<label>Title</label> <input type="text" name="edit_post[title]" value="{post.title}" />
-			</div>
-			<div class="form__row">
-				<label>URL Short name</label> <input type="text" name="edit_post[shortname]" value="{post.shortname}" />
-			</div>
-			<div class="form__row">
-				<label>Teaser</label> <textarea name="edit_post[teaser]">{post.teaser}</textarea>
-			</div>
-			<div class="form__row">
-				<label>Content</label> <textarea name="edit_post[content]">{post.content}</textarea>
-			</div>
+			<header>
+				<button type="button">Close</button>
+				<button type="submit" name="save">Save</button>
+				<button type="submit" name="exit">Save & Exit</button>
+			</header>
+			<fieldset>
+				<div class="post__meta">
+					<input type="hidden" name="edit_post[id]" value="{post.id}" />
+				</div>
+				<div class="form__row form__row-checkbox">
+					<input type="checkbox" name="edit_post[hidden]"{f:if(condition: '{post.hidden} == 1', then: ' checked="checked"')} /> <label>Hidden</label>
+				</div>
+				<div class="form__row">
+					<label>Title</label> <input type="text" class="text" name="edit_post[title]" value="{post.title}" />
+				</div>
+				<div class="form__row">
+					<label>URL Short name</label> <input type="text" class="text" name="edit_post[shortname]" value="{post.shortname}" />
+				</div>
+				<div class="form__row">
+					<label>State</label>
+					<select class="text" name="edit_post[storage]">
+						<option value="post"{f:if(condition: '{post.storage} == \'post\'', then: ' selected="selected"')}>Post</option>
+						<option value="trash"{f:if(condition: '{post.storage} == \'trash\'', then: ' selected="selected"')}>Trash</option>
+					</select>
+				</div>
+				<div class="form__row">
+					<label>Teaser</label> <textarea name="edit_post[teaser]" class="text">{post.teaser}</textarea>
+				</div>
+				<div class="form__row">
+					<label>Content</label> <textarea name="edit_post[content]" class="text"><f:format.raw>{post.content}</f:format.raw></textarea>
+				</div>
+			</fieldset>
 		</form>
 	</div>
 </div>

@@ -248,3 +248,35 @@ nav.toolbar {
 .record__list-hidden {
 	color: #666;
 }
+
+
+
+/* forms */
+.form__row {
+	margin: 0 0 10px 0;
+	overflow: hidden;
+}
+
+.form__row label {
+	display: block;
+	float: left;
+	width: 15%;
+}
+
+.form__row .text {
+	width: 80%;
+}
+
+.form__row textarea {
+	height: 200px;
+}
+
+
+
+
+
+
+
+
+
+

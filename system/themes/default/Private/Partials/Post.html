@@ -10,7 +10,14 @@
 		</f:if>
 	</h2>
 	<div class="article__teaser">
-		{post.teaser}
+		<f:if condition="{settings.action} == 'show'">
+			<f:then>
+				<f:format.raw>{post.content}</f:format.raw>
+			</f:then>
+			<f:else>
+				{post.teaser}
+			</f:else>
+		</f:if>
 	</div>
 	<footer>
 		<span class="article__date"><f:format.date format="d.m.Y">{post.crdate}</f:format.date></span>

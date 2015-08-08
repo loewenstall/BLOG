@@ -9,7 +9,7 @@ use \BLOG\core\Interfaces\ControllerInterface,
     \BLOG\core\Service\LocallangService,
     \BLOG\core\Service\RequestService,
     \BLOG\core\Service\PdoDbService,
-    \BLOG\core\Repository\BlogRepository;
+    \BLOG\core\Repository\PostRepository;
 
 class Engine {
 
@@ -191,7 +191,7 @@ class Engine {
      * initialize repository
      */
     private function initializeRepository() {
-        $this->services = new BlogRepository($this->database, $this->request);
+        $this->services = new PostRepository($this->database, $this->request);
     }
 
     /**

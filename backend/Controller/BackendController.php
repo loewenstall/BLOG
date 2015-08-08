@@ -21,18 +21,18 @@ class BackendController extends \BLOG\backend\Controller\AbstractController {
      */
     public function dashboardAction() {
         $session = $this->session->getSession();
-        $postCount = $this->blogRepository->findAll('sys_post', 'count(*) cnt', array('storage' => 'post'));
-        $hiddenPostcount = $this->blogRepository->findAll('sys_post', 'count(*) cnt', array('storage' => 'post', 'hidden' => 1));
-        $publicPostcount = $this->blogRepository->findAll('sys_post', 'count(*) cnt', array('storage' => 'post', 'hidden' => 0));
-        $trash = $this->blogRepository->findAll('sys_post', 'count(*)', array('storage' => 'trash'));
-        $commentCount = $this->blogRepository->findAll('sys_comment', 'count(*) cnt');
-        $latestPost = $this->blogRepository->findLatest('sys_post', '*', array('hidden' => 0));
+        $postCount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post'));
+        $hiddenPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 1));
+        $publicPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 0));
+        $trash = $this->blogRepository->findAll('count(*)', array('storage' => 'trash'));
+        //$commentCount = $this->blogRepository->findAll('sys_comment', 'count(*) cnt');
+        $latestPost = $this->blogRepository->findLatest('*', array('hidden' => 0));
 
         $this->view->assignMultiple(
             array(
                 'user' => $session['user'],
                 'postCount' => $postCount[0]['cnt'],
-                'commentCount' => $commentCount[0]['cnt'],
+                //'commentCount' => $commentCount[0]['cnt'],
                 'hiddenPostCount' => $hiddenPostcount[0]['cnt'],
                 'publicPostCount' => $publicPostcount[0]['cnt'],
                 'trash' => $trash[0]['count(*)'],

@@ -8,16 +8,16 @@ class PostController extends \BLOG\core\Abstracts\AbstractController {
      * returns a list of posts
      */
     public function listAction() {
-        $posts = $this->blogRepository->findAll('sys_post', '*');
+        $posts = $this->postRepository->findAll('*', array('hidden' => 0), 'crdate DESC');
         $this->view->assign('posts', $posts);
     }
 
     /**
      * returns a single post
      *
-     * @param $post
+     * @param integer $postId
      */
-    public function showAction($post) {
-        $this->view->assign('post', $this->blogRepository->findByUid('sys_post', $post));
+    public function showAction($postId) {
+        $this->view->assign('post', $this->postRepository->findByUid('*', $postId));
     }
 }
