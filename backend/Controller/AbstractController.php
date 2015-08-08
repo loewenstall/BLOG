@@ -92,8 +92,6 @@ abstract class AbstractController {
 
             $dbUser = $this->getUserData($username);
 
-            var_dump($dbUser);
-
             if ($dbUser === null) {
                 $this->view->assign('login_error', 'User "' . $username . '" not found.');
             }
