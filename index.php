@@ -1,4 +1,10 @@
 <?php
+/**
+ * BLOG
+ * alpha still under development
+ *
+ */
+
 //error_reporting(E_ALL ^ E_NOTICE);
 
 /**
