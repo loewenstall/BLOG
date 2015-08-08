@@ -1,0 +1,20 @@
+<header class="controls">
+	<span class="controls__info" title="BLOG {version} &copy; 2015 Marc Scherer"></span>
+	<nav class="controls__cache">
+		<ul class="nav">
+			<li>
+				<a class="controls__cache-item">Cache</a>
+				<ul class="nav__sub">
+					<li><a href="#" data-module="cache" data-type="fe">Clear frontend cache</a></li>
+					<li><a href="#" data-module="cache" data-type="syslog">Clear syslog</a></li>
+					<li><a href="#" data-module="cache" data-type="all">Clear all caches</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<span class="controls__user">
+		Welcome <strong><f:if condition="{user.fullname}"><f:then>{user.fullname}</f:then><f:else>{user.name}</f:else></f:if></strong>
+		<a href="?action=profile"> Profile</a>
+		<a href="?action=logout"> Logout</a>
+	</span>
+</header>

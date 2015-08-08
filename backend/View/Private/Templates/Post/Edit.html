@@ -1,0 +1,25 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+<div class="content__container">
+	<h1>BLOG posts</h1>
+	<div class="dashboard__module">
+		<h2>Edit post "{post.title}", ID {post.id}</h2>
+
+		<form name="editForm" action="foo" method="post">
+			<div class="form__row">
+				<label>Title</label> <input type="text" name="edit_post[title]" value="{post.title}" />
+			</div>
+			<div class="form__row">
+				<label>URL Short name</label> <input type="text" name="edit_post[shortname]" value="{post.shortname}" />
+			</div>
+			<div class="form__row">
+				<label>Teaser</label> <textarea name="edit_post[teaser]">{post.teaser}</textarea>
+			</div>
+			<div class="form__row">
+				<label>Content</label> <textarea name="edit_post[content]">{post.content}</textarea>
+			</div>
+		</form>
+	</div>
+</div>
+</f:section>

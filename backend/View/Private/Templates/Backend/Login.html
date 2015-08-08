@@ -1,0 +1,25 @@
+<f:layout name="Login" />
+
+<f:section name="main">
+	<div class="panel">
+		<form name="backendLogin" action="index.php?action=login" method="post" id="loginForm" class="login__form">
+			<div class="login__form-header">
+				<span class="header__item">Open Source Blog</span>
+				<span class="header__item">Author: Marc Scherer</span>
+			</div>
+			<div class="form__row">
+				<input type="text" name="user" value="{post.user}" placeholder="User" />
+			</div>
+			<div class="form__row">
+				<input type="password" name="pass" value="{post.passwd}" placeholder="Password" />
+			</div>
+			<div class="form__row">
+				<button type="submit" name="enter">Einloggen</button>
+			</div>
+		</form>
+		<p class="disclaimer">
+			&copy; 2015 Marc Scherer <a href="http://www.loewenstall.de">Löwenstall</a><br />
+			This is free software, and you are welcome to redistribute it under certain conditions
+		</p>
+	</div>
+</f:section>

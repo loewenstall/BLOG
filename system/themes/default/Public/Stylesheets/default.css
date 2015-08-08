@@ -1,0 +1,12 @@
+body {
+	background: #ddd;
+	margin: 0;
+	padding: 0;
+}
+
+.content {
+	background: #fff;
+	margin: 0 auto;
+	padding: 0 5%;
+	width: 80%;
+}

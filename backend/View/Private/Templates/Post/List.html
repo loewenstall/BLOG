@@ -1,0 +1,32 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+<div class="content__container">
+	<h1>BLOG posts</h1>
+	<div class="dashboard__module">
+		<h2>List</h2>
+		<ul class="record__list">
+			<li class="record__list-header">
+				<span class="record__list-id">ID</span>
+				<span class="record__list-label">Title</span>
+				<span class="record__list-label">Author</span>
+				<span class="record__list-date">Date/Time</span>
+				<span class="record__list-date">Modified</span>
+				<span class="record__list-controls">Controls</span>
+			</li>
+			<f:for each="{posts}" as="post">
+				<li class="record{f:if(condition: '{post.hidden} == 1', then: ' record__list-hidden')}">
+					<span class="record__list-id">{post.id}</span>
+					<span class="record__list-label">{post.title}</span>
+					<span class="record__list-label">{post.author}</span>
+					<span class="record__list-date"><f:format.date format="d.m.Y H:i">{post.crdate}</f:format.date></span>
+					<span class="record__list-modified"><f:format.date format="d.m.Y H:i">{post.modified}</f:format.date></span>
+					<span class="record__list-controls">
+						<f:render partial="Records/Controls.html" arguments="{controller: '{settings.controller}', action: '{settings.action}', id: post.id, hidden: post.hidden}" />
+					</span>
+				</li>
+			</f:for>
+		</ul>
+	</div>
+</div>
+</f:section>

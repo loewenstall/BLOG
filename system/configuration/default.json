@@ -1,0 +1,43 @@
+{
+    "database": {
+        "db_host": "localhost",
+        "db_user": "root",
+        "db_password": "Scherer876",
+        "db_name": "blog"
+    },
+
+    "domains": [
+        "foo.bar.de"
+    ],
+
+    "includes": [
+        "test.json"
+    ],
+
+    "public": {
+        "baseUrl": "http://blog.marc-mint.os/"
+    },
+
+    "language": {
+        "default": {
+            "en": {
+                "key": "en",
+                "label": "English",
+                "iso": "en-EN"
+            }
+        },
+        "available": {
+            "de": {
+                "key": "de",
+                "label": "Deutsch",
+                "iso": "de-DE"
+            }
+        }
+    },
+
+    "view": {
+        "templateRootPath": "/Private/Templates",
+        "layoutRootPath": "/Private/Layouts",
+        "partialRootPath": "/Private/Partials"
+    }
+}

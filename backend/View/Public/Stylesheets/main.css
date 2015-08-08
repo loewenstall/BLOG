@@ -1,0 +1,250 @@
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background: #999;
+	margin: 0;
+	padding: 0;
+}
+
+body.backend {
+	background: #ccc;
+}
+
+nav ul,
+nav li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* login */
+.login__wrapper {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+
+.login__wrapper .panel {
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.login__wrapper form {
+	border-radius: 14px;
+	-moz-border-radius: 14px;
+	-webkit-border-radius: 14px;
+	background: #ccc;
+	min-height: 100px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0;
+	max-width: 40%;
+	width: 320px;
+}
+
+.login__wrapper .form__row {
+	margin: 0 0 14px 0;
+	padding: 0 14px;
+}
+
+.login__wrapper .form__row input,
+.login__wrapper .form__row button {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #999;
+	box-sizing: border-box;
+	font-size: 16px;
+	padding: 3px 3% 3px 7%;
+	width: 100%;
+}
+
+.login__wrapper .form__row input[type="text"],
+.login__wrapper .form__row input[type="text"]:focus {
+	background: #ddd url('../Images/user.png') 2px 50% no-repeat !important;
+}
+
+.login__wrapper .form__row input[type="password"],
+.login__wrapper .form__row input[type="password"]:focus {
+	background: #ddd url('../Images/security.png') 2px 50% no-repeat !important;;
+}
+
+.login__wrapper .form__row input:focus {
+	background-color: #fff !important;
+}
+
+*::-webkit-input-placeholder {
+	color: #999;
+}
+
+*:-moz-placeholder {
+	color: #999;
+}
+
+*::-moz-placeholder {
+	color: #999;
+}
+
+*:-ms-input-placeholder {
+	color: #999;
+}
+
+.login__wrapper .form__row button {
+	background: #1c54bb;
+	color: #fff;
+	cursor: pointer;
+	padding: 7px 5%;
+}
+
+
+
+
+.login__form-header {
+	background: #efefef url('../Images/logo.png') 12px 50% no-repeat;
+	border-bottom: 7px dotted #999;
+	height: 28px;
+	margin: 0 0 14px 0;
+	padding: 0 14px 7px 14px;
+}
+
+.login__form-header .header__item {
+	color: #999;
+	display: block;
+	text-align: right;
+	font-size: 12px;
+	line-height: 11px;
+	padding: 4px 0 0 0;
+}
+
+
+
+
+
+p.disclaimer {
+	font-size: 12px;
+	text-align: center;
+}
+
+
+
+
+
+
+/* header */
+header.controls {
+	background: #efefef url('../Images/logo.png') 12px 50% no-repeat;
+	height: 28px;
+}
+
+.controls__user {
+	position: absolute;
+	right: 14px;
+	top: 0;
+}
+
+.controls__cache a,
+.controls__user {
+	height: 28px;
+	line-height: 28px;
+}
+
+.controls__cache {
+	left: 15%;
+	position: absolute;
+	top: 0;
+}
+
+.controls__cache-item {
+	padding: 0 0 0 10px;
+}
+
+.controls__cache .nav__sub {
+	background: #333;
+	padding: 5px 10px 10px 10px;
+}
+
+.controls__cache .nav__sub a {
+	color: #fff;
+}
+
+.controls__info {
+	display: block;
+	height: 28px;
+	width: 95px;
+}
+
+
+/* navigations */
+.nav__sub {
+	display: none;
+}
+
+.nav__sub a {
+	font-size: 15px;
+	line-height: 15px;
+}
+
+ul.nav > li:hover .nav__sub {
+	display: block;
+}
+
+
+
+/* toolbar */
+nav.toolbar {
+	background: #1c54bb;
+	background: #ccc;
+	float: left;
+	padding: 28px 0;
+	width: 15%;
+}
+
+.toolbar__group > li {
+	margin: 0 0 28px 0;
+}
+
+.toolbar__group a {
+	display: block;
+	padding: 0 0 0 14px;
+}
+
+.toolbar__group > li > a {
+	font-size: 18px;
+	line-height: 18px;
+	margin: 0 0 7px 0;
+	padding: 0 0 3px 14px;
+}
+
+.toolbar__group-sub > li > a {
+	font-size: 15px;
+	line-height: 15px;
+}
+
+
+
+/* content */
+.content {
+	float: right;
+	padding: 28px 0;
+	width: 85%
+}
+
+.content__container {
+	padding: 0 14px;
+}
+
+.content h1 {
+	font-size: 18px;
+	margin: 0 0 28px 0;
+	padding: 0;
+}
+
+/* record list */
+
+.record__list-hidden {
+	color: #666;
+}

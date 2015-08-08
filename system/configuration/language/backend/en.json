@@ -1,0 +1,17 @@
+{
+  "languag": "en-EN",
+
+  "login": {
+    "User": "User",
+    "Password": "Password",
+    "buttonLabel": "Login",
+    "error": {
+      "noUser": "User %username% not found.",
+      "wrongPass": "Wrong password."
+    }
+  },
+
+  "common": {
+    "welcome": "Welcome"
+  }
+}

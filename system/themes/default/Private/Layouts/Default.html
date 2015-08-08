@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Language" content="de">
+
+	<f:for each="{stylesheets}" as="style">
+	<link rel="stylesheet" href="{style}" media="all" />
+	</f:for>
+</head>
+<body>
+<div class="content">
+	<f:render partial="Header" />
+
+	<div class="main">
+		<f:render section="main" />
+	</div>
+	<aside>
+
+	</aside>
+	<f:render partial="Footer" />
+</div>
+</body>
+</html>

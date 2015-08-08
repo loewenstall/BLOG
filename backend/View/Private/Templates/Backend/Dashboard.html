@@ -1,0 +1,44 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+<div class="content__container">
+	<h1>BLOG running V{version}</h1>
+	<div class="dashboard__module">
+		<h2>Posts</h2>
+		<p>
+			The database keeps {postCount} posts.<br />
+			- Public posts: {publicPostCount}<br />
+			- Hidden posts: {hiddenPostCount}
+		</p>
+		<h3>Latest post</h3>
+		<p>
+			<f:format.date format="d.m.Y">{latestPost.crdate}</f:format.date>: {latestPost.title}
+		</p>
+	</div>
+	<div class="dashboard__module">
+	<h2>Comments</h2>
+		<p>
+			The database keeps {commentCount} comments in {postCount} posts.<br />
+		</p>
+		<h3>Latest comment</h3>
+		<p>
+			<f:if condition="{latestComment}">
+				<f:then>
+					<f:format.date format="d.m.Y">{latestComment.crdate}</f:format.date>: {latestComment.title}
+				</f:then>
+				<f:else>
+					No comments available at the moment.
+				</f:else>
+			</f:if>
+		</p>
+	</div>
+	<div class="dashboard__module">
+		<h2>Trash</h2>
+		<p>Trash keeps {trash} posts.</p>
+	</div>
+	<div class="dashboard__module">
+		<h2>System</h2>
+		<p>Trash keeps {trash} posts.</p>
+	</div>
+</div>
+</f:section>
