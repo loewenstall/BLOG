@@ -31,7 +31,5 @@ class PostController extends \BLOG\backend\Controller\BackendController {
         );
     }
 
-    public function createAction() {
-        echo 'foo';
-    }
+    public function createAction() {}
 }

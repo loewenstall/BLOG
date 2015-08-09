@@ -81,6 +81,13 @@ abstract class AbstractRepository {
 	}
 
 	/**
+     * @param array $postData
+     */
+    public function add($postData) {
+        $this->db->insert($this->table, $postData);
+    }
+
+	/**
 	 * @param string $table
 	 */
 	protected function setTable($table) {

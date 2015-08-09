@@ -39,6 +39,10 @@ class SessionController {
 			return false;
 		}
 
+		if (!isset($_SESSION['BLOG_backend'][$key])) {
+			return array();
+		}
+
 		return $_SESSION['BLOG_backend'][$key];
 	}
 
@@ -47,7 +51,15 @@ class SessionController {
 			return false;
 		}
 
+		if (!isset($_SESSION['BLOG_backend'][$key])) {
+			return false;
+		}
+
 		unset($_SESSION['BLOG_backend'][$key]);
+	}
+
+	public function getUserId() {
+		return $_SESSION['BLOG_backend']['user']['id'];
 	}
 
 	public function logout() {

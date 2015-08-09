@@ -8,7 +8,7 @@ class PostController extends \BLOG\core\Abstracts\AbstractController {
      * returns a list of posts
      */
     public function listAction() {
-        $posts = $this->postRepository->findAll('*', array('hidden' => 0), 'crdate DESC');
+        $posts = $this->postRepository->findAll('*', array('storage' => 'post', 'hidden' => 0), 'crdate DESC');
         $this->view->assign('posts', $posts);
     }
 

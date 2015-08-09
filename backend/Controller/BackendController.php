@@ -18,8 +18,8 @@ class BackendController extends \BLOG\backend\Controller\AbstractController {
 	 * shows the dashboard
      */
     public function dashboardAction() {
-        $postCount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post'));
         $hiddenPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 1));
+        $draftPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'draft'));
         $publicPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 0));
         $trash = $this->blogRepository->findAll('count(*)', array('storage' => 'trash'));
         $commentCount = $this->commentRepository->findAll('count(*) cnt');
@@ -28,9 +28,9 @@ class BackendController extends \BLOG\backend\Controller\AbstractController {
 
         $this->view->assignMultiple(
             array(
-                'postCount' => $postCount[0]['cnt'],
                 'commentCount' => $commentCount[0]['cnt'],
                 'hiddenPostCount' => $hiddenPostcount[0]['cnt'],
+                'draftPostcount' => $draftPostcount[0]['cnt'],
                 'publicPostCount' => $publicPostcount[0]['cnt'],
                 'trash' => $trash[0]['count(*)'],
                 'latestPost' => $latestPost,

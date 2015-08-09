@@ -196,8 +196,32 @@ abstract class AbstractController {
             $this->session->updateSessionData('post', $newPost);
             $this->redirect('new', 'Post');
         } else {
-            $this->postRepository->add();
+            $this->saveAndCleanup($newPost);
         }
+    }
+
+    private function saveAndCleanup($newPost) {
+        $this->blogRepository->add($this->finishPost($newPost));
+        $this->session->removeSessionData('post');
+        $this->redirect('dashboard', 'Backend');
+    }
+
+    /**
+     * finish post and set some extra data
+     *
+     * @param $postData
+     * @return mixed
+     */
+    private function finishPost($postData) {
+        unset($postData['errors']);
+
+        $date = new \DateTime();
+
+        $postData['crdate'] = $date->format('Y-m-d H:i:s');
+        $postData['modified'] = $date->format('Y-m-d H:i:s');
+        $postData['author'] = $this->session->getUserId();
+
+        return $postData;
     }
 
     /**

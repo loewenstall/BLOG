@@ -73,6 +73,14 @@ class PdoDbService extends \PDO {
 	}
 
 	/**
+	 * @param string $table
+	 * @param array $fieldValues
+	 */
+	public function insert($table, $fieldValues) {
+		$this->execute($this->getInsertQueryString($table, $fieldValues));
+	}
+
+	/**
 	 * @param $table
 	 * @param string $fields
 	 * @param array $where
@@ -102,6 +110,23 @@ class PdoDbService extends \PDO {
 		if ($limit != '') {
 			$queryString .= " LIMIT " . $limit;
 		}
+
+		return $queryString;
+	}
+
+	public function getInsertQueryString($table, $fieldValues) {
+		$insertData = '';
+		$valuesData = '';
+		$count = 1;
+
+		foreach ($fieldValues as $field => $value) {
+			$sep = ($count < count($fieldValues)) ? ',' : '';
+			$insertData .= $field . $sep;
+			$valuesData .= $this->quote($value) . $sep;
+			$count++;
+		}
+
+		$queryString = "INSERT INTO " . $table . " (" . $insertData . ") VALUES (" . $valuesData . ")";
 
 		return $queryString;
 	}
