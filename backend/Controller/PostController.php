@@ -4,10 +4,6 @@ namespace BLOG\backend\Controller;
 
 class PostController extends \BLOG\backend\Controller\BackendController {
 
-    function __construct($action, \TYPO3\Fluid\View\StandaloneView $view, $request, $database, $session, $config) {
-        parent::__construct($action, $view, $request, $database, $session, $config);
-    }
-
     /**
 	 * list all posts
      */
@@ -25,8 +21,17 @@ class PostController extends \BLOG\backend\Controller\BackendController {
     }
 
     /**
-	 *
      */
     public function newAction() {
+        $this->view->assignMultiple(
+            array(
+                'categories' => $this->categoryRepository->findAll(),
+                'post' => $this->session->getSessionData('post')
+            )
+        );
+    }
+
+    public function createAction() {
+        echo 'foo';
     }
 }

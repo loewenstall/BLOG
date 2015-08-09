@@ -45,6 +45,16 @@ abstract class AbstractController {
     protected $postRepository;
 
     /**
+     * @var \BLOG\core\Repository\CommentRepository
+     */
+    protected $commentRepository;
+
+    /**
+     * @var \BLOG\core\Repository\CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
      * @var array
      */
     protected $postData;
@@ -70,12 +80,21 @@ abstract class AbstractController {
         $this->session = $session;
         $this->sysConf = $config;
         $this->blogRepository = new \BLOG\backend\Repository\BlogRepository($database, $request);
+        $this->postRepository = new \BLOG\core\Repository\PostRepository($this->database, $this->request);
+        $this->commentRepository = new \BLOG\core\Repository\CommentRepository($database, $request);
+        $this->categoryRepository = new \BLOG\core\Repository\CategoryRepository($database, $request);
         $this->postData = $_POST;
 
         if ($this->action != 'login' && $this->session->getSession() === false) {
             $this->redirect('login');
         } else {
             $this->initializeAction();
+
+            $caller = get_called_class();
+
+            if (function_exists($caller::initializeAction())) {
+                $caller::initializeAction();
+            }
         }
     }
 
@@ -83,7 +102,6 @@ abstract class AbstractController {
      * let controllers call a custom constructor
      */
     public function initializeAction() {
-        $this->postRepository = new \BLOG\core\Repository\PostRepository($this->database, $this->request);
         $this->lllService = new \BLOG\core\Service\LocallangService($this->sysConf['language']);
     }
 
@@ -121,19 +139,6 @@ abstract class AbstractController {
         }
     }
 
-    protected function editAction() {
-
-    }
-
-    protected function hideAction() {
-
-    }
-
-
-    protected function deleteAction() {
-
-    }
-
     /**
      * get login user by username
      *
@@ -147,6 +152,7 @@ abstract class AbstractController {
     /**
      * @param string $password
      * @return string
+     * @todo implement salted passwords (while a user is created)
      */
     protected function getSaltedPasswordString($password) {
         return crypt($password, '$2a$06$' . md5($password) . '$');
@@ -168,6 +174,30 @@ abstract class AbstractController {
      */
     public function getAction() {
         return $this->action;
+    }
+
+    protected function validateNewPost() {
+        $postData = $this->session->getSessionData('post');
+        $newPost = $postData['new_post'];
+        $newPost['errors'] = null;
+        $errorCount = 0;
+
+        if (strlen($newPost['title']) == 0) {
+            $newPost['errors']['title'] = true;
+            $errorCount++;
+        }
+
+        if (strlen($newPost['content']) == 0) {
+            $newPost['errors']['content'] = true;
+            $errorCount++;
+        }
+
+        if ($errorCount > 0) {
+            $this->session->updateSessionData('post', $newPost);
+            $this->redirect('new', 'Post');
+        } else {
+            $this->postRepository->add();
+        }
     }
 
     /**
@@ -196,7 +226,9 @@ abstract class AbstractController {
      */
     public function __destruct() {
         if ($this->view) {
-            echo $this->view->render($this->action);
+            if ($this->action != 'create') {
+                echo $this->view->render($this->action);
+            }
         } else {
             $this->log('No instance of view found in ' . __FILE__ . ' line ' . (__LINE__ - 3));
             //@todo throw exeption

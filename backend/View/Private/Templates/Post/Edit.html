@@ -7,11 +7,11 @@
 		<h2>Edit post ID {post.id}: "{post.title}", created: <f:format.date format="d.m.Y H:i">{post.crdate}</f:format.date></h2>
 
 		<form name="editForm" action="foo" method="post">
-			<header>
+			<div class="form__controls">
 				<button type="button">Close</button>
 				<button type="submit" name="save">Save</button>
 				<button type="submit" name="exit">Save & Exit</button>
-			</header>
+			</div>
 			<fieldset>
 				<div class="post__meta">
 					<input type="hidden" name="edit_post[id]" value="{post.id}" />
@@ -28,17 +28,29 @@
 				<div class="form__row">
 					<label>State</label>
 					<select class="text" name="edit_post[storage]">
+						<option value="draft"{f:if(condition: '{post.storage} == \'draft\'', then: ' selected="selected"')}>Draft</option>
 						<option value="post"{f:if(condition: '{post.storage} == \'post\'', then: ' selected="selected"')}>Post</option>
 						<option value="trash"{f:if(condition: '{post.storage} == \'trash\'', then: ' selected="selected"')}>Trash</option>
+					</select>
+				</div>
+				<div class="form__row">
+					<label>Category</label>
+					<select class="text" name="edit_post[category]">
+						{categories}
 					</select>
 				</div>
 				<div class="form__row">
 					<label>Teaser</label> <textarea name="edit_post[teaser]" class="text">{post.teaser}</textarea>
 				</div>
 				<div class="form__row">
-					<label>Content</label> <textarea name="edit_post[content]" class="text"><f:format.raw>{post.content}</f:format.raw></textarea>
+					<label>Content</label> <textarea name="edit_post[content]" id="rte" class="text"><f:format.raw>{post.content}</f:format.raw></textarea>
 				</div>
 			</fieldset>
+			<div class="form__controls">
+				<button type="button">Close</button>
+				<button type="submit" name="save">Save</button>
+				<button type="submit" name="exit">Save & Exit</button>
+			</div>
 		</form>
 	</div>
 </div>

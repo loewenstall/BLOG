@@ -24,7 +24,7 @@
 		<p>
 			<f:if condition="{latestComment}">
 				<f:then>
-					<f:format.date format="d.m.Y">{latestComment.crdate}</f:format.date>: {latestComment.title}
+					<f:format.date format="d.m.Y">{latestComment.crdate}</f:format.date>: {latestComment.title} for post "{latestComment.post.title}"
 				</f:then>
 				<f:else>
 					No comments available at the moment.

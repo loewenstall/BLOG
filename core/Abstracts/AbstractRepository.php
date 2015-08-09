@@ -69,6 +69,18 @@ abstract class AbstractRepository {
 	}
 
 	/**
+	 * returns a single post
+	 *
+	 * @param string $identifier
+	 * @param string $fields
+	 * @param mixed $value
+	 * @return array
+	 */
+	public function findByIdentifier($identifier, $fields = '*', $value) {
+		return $this->db->fetch($this->db->getQueryString($this->table, $fields, array($identifier => $value)));
+	}
+
+	/**
 	 * @param string $table
 	 */
 	protected function setTable($table) {

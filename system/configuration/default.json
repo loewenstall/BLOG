@@ -3,7 +3,8 @@
         "db_host": "localhost",
         "db_user": "root",
         "db_password": "Scherer876",
-        "db_name": "blog"
+        "db_name": "blog",
+        "db_charset": "UTF8"
     },
 
     "domains": [

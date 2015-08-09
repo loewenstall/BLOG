@@ -26,12 +26,20 @@ class SessionController {
 		);
 	}
 
-	public function updateSession($key, $data) {
+	public function updateSessionData($key, $data) {
 		if (!isset($_SESSION['BLOG_backend'])) {
 			return false;
 		}
 
 		$_SESSION['BLOG_backend'][$key] = $data;
+	}
+
+	public function getSessionData($key) {
+		if (!isset($_SESSION['BLOG_backend'])) {
+			return false;
+		}
+
+		return $_SESSION['BLOG_backend'][$key];
 	}
 
 	public function removeSessionData($key) {

@@ -139,8 +139,16 @@ class Engine {
      */
     public function initializeDatabase() {
         $dbSettings = $this->sysConf['database'];
-        $dsn      = 'mysql:dbname=' . $dbSettings['db_name'] . ';host=' . $dbSettings['db_host'];
-        $this->database = new PdoDbService($dsn, $dbSettings['db_user'], $dbSettings['db_password'], array(\PDO::ATTR_PERSISTENT => true));
+        $dsn      = 'mysql:dbname=' . $dbSettings['db_name'] . ';host=' . $dbSettings['db_host'] . ';charset=' . $dbSettings['db_charset'];
+        $this->database = new PdoDbService(
+            $dsn,
+            $dbSettings['db_user'],
+            $dbSettings['db_password'],
+            array(
+                \PDO::ATTR_PERSISTENT => true,
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES "' . $dbSettings['db_charset'] . '"'
+            )
+        );
     }
 
     /**

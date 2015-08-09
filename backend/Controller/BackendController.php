@@ -4,39 +4,37 @@ namespace BLOG\backend\Controller;
 
 class BackendController extends \BLOG\backend\Controller\AbstractController {
 
-    /**
-     * @param string $action
-     * @param \TYPO3\Fluid\View\StandaloneView $view
-     * @param \BLOG\core\Service\RequestService $request
-     * @param \BLOG\core\Service\MysqliDb $database
-     * @param SessionController $session
-     * @param array $config
-     */
-    function __construct($action, \TYPO3\Fluid\View\StandaloneView $view, $request, $database, $session, $config) {
-        parent::__construct($action, $view, $request, $database, $session, $config);
+    public function initializeAction() {
+        $session = $this->session->getSession();
+        $this->view->assign('user', $session['user']);
+
+        if ($this->getAction() == 'create') {
+            $this->session->updateSessionData('post', $this->postData);
+            $this->validateNewPost();
+        }
     }
 
     /**
-	 *
+	 * shows the dashboard
      */
     public function dashboardAction() {
-        $session = $this->session->getSession();
         $postCount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post'));
         $hiddenPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 1));
         $publicPostcount = $this->blogRepository->findAll('count(*) as cnt', array('storage' => 'post', 'hidden' => 0));
         $trash = $this->blogRepository->findAll('count(*)', array('storage' => 'trash'));
-        //$commentCount = $this->blogRepository->findAll('sys_comment', 'count(*) cnt');
+        $commentCount = $this->commentRepository->findAll('count(*) cnt');
         $latestPost = $this->blogRepository->findLatest('*', array('hidden' => 0));
+        $latestComment = $this->blogRepository->getLatestCommentWithPost($this->commentRepository->findLatest('*', array('hidden' => 0)));
 
         $this->view->assignMultiple(
             array(
-                'user' => $session['user'],
                 'postCount' => $postCount[0]['cnt'],
-                //'commentCount' => $commentCount[0]['cnt'],
+                'commentCount' => $commentCount[0]['cnt'],
                 'hiddenPostCount' => $hiddenPostcount[0]['cnt'],
                 'publicPostCount' => $publicPostcount[0]['cnt'],
                 'trash' => $trash[0]['count(*)'],
-                'latestPost' => $latestPost
+                'latestPost' => $latestPost,
+                'latestComment' => $latestComment
             )
         );
     }

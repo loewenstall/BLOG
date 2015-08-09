@@ -10,3 +10,20 @@ body {
 	padding: 0 5%;
 	width: 80%;
 }
+
+.content__container {
+	overflow: hidden;
+}
+
+.content__container article,
+.content__container aside {
+	float: left;
+}
+
+.content__container article {
+	width: 75%;
+}
+
+.content__container aside {
+	width: 23%;
+}

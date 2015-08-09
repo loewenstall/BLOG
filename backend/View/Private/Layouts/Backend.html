@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<title>BLOG Backend<f:if condition="{post}"> - Post: {post.title}</f:if><f:if condition="{category}"> - Post: {category.title}</f:if></title>
 
-	<link rel="stylesheet" href="View/Public/Stylesheets/main.css" media="all" />
+	<link rel="Stylesheet" type="text/css" href="View/Public/Stylesheets/rte/jHtmlArea.css" />
+	<link rel="Stylesheet" type="text/css" href="View/Public/Stylesheets/rte/jHtmlArea.ColorPickerMenu.css" />
+	<link rel="stylesheet" type="text/css" href="View/Public/Stylesheets/main.css" media="all" />
+
+	<script type="text/javascript" src="View/Public/Javascripts/jquery-1.11.3.min.js"></script>
 </head>
 <body class="backend">
 	<f:render partial="Header" arguments="{_all}" />
@@ -12,5 +16,8 @@
 	<div class="content">
 		<f:render section="main" arguments="{_all}" />
 	</div>
+<script type="text/javascript" src="View/Public/Javascripts/rte/jHtmlArea-0.8.min.js"></script>
+<script type="text/javascript" src="View/Public/Javascripts/rte/jHtmlArea.ColorPickerMenu-0.8.min.js"></script>
+<script type="text/javascript" src="View/Public/Javascripts/backend.js"></script>
 </body>
 </html>

@@ -30,6 +30,11 @@ abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInt
     protected $postRepository;
 
     /**
+     * @var \BLOG\core\Repository\CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
      * @param string $action
      * @param \TYPO3\Fluid\View\StandaloneView $view
      * @param \BLOG\core\Service\RequestService $request
@@ -42,8 +47,16 @@ abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInt
         $this->request = $request;
         $this->sysConf = $config;
         $this->postRepository = new \BLOG\core\Repository\PostRepository($database, $request);
+        $this->commentRepository = new \BLOG\core\Repository\CommentRepository($database, $request);
+        $this->categoryRepository = new \BLOG\core\Repository\CategoryRepository($database, $request);
 
         $this->initializeAction();
+
+        $caller = get_called_class();
+
+		if (function_exists($caller::initializeAction())) {
+			$caller::initializeAction();
+		}
     }
 
     /**
@@ -63,7 +76,9 @@ abstract class AbstractController implements \BLOG\core\Interfaces\ControllerInt
      */
     public function __destruct() {
         if ($this->view) {
-            echo $this->view->render($this->action);
+            if ($this->action != 'create') {
+                echo $this->view->render($this->action);
+            }
         } else {
             $this->log('No instance of view found in ' . __FILE__ . ' line ' . (__LINE__ - 3));
         }

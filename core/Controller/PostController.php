@@ -18,6 +18,6 @@ class PostController extends \BLOG\core\Abstracts\AbstractController {
      * @param integer $postId
      */
     public function showAction($postId) {
-        $this->view->assign('post', $this->postRepository->findByUid('*', $postId));
+        $this->view->assign('post', $this->postRepository->findCommentedByUid('*', $postId));
     }
 }

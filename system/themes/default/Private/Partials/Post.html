@@ -1,28 +1,10 @@
-<article id="{post.id}">
-	<h2>
-		<f:if condition="{settings.action} == 'show'">
-			<f:then>
-				{post.title}
-			</f:then>
-			<f:else>
-				<a href="index.php?action=show&post={post.id}">{post.title}</a>
-			</f:else>
-		</f:if>
-	</h2>
-	<div class="article__teaser">
-		<f:if condition="{settings.action} == 'show'">
-			<f:then>
-				<f:format.raw>{post.content}</f:format.raw>
-			</f:then>
-			<f:else>
-				{post.teaser}
-			</f:else>
-		</f:if>
-	</div>
-	<footer>
-		<span class="article__date"><f:format.date format="d.m.Y">{post.crdate}</f:format.date></span>
-		<f:if condition="{settings.action} == 'show'">
-			<a href="/" class="back">Zurück zur Übersicht</a>
-		</f:if>
-	</footer>
-</article>
+<div class="content__container">
+<f:if condition="{settings.action} == 'show'">
+	<f:then>
+		<f:render partial="Post/Single" arguments="{post: post}" />
+	</f:then>
+	<f:else>
+		<f:render partial="Post/List" arguments="{post: post}" />
+	</f:else>
+</f:if>
+</div>

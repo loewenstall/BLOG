@@ -243,6 +243,19 @@ nav.toolbar {
 	padding: 0;
 }
 
+
+
+
+.password__change {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
 /* record list */
 
 .record__list-hidden {
@@ -268,7 +281,17 @@ nav.toolbar {
 }
 
 .form__row textarea {
-	height: 200px;
+	height: 100px;
+}
+
+.form__row textarea#rte {
+	height: 320px;
+}
+
+
+/* overrides */
+.jHtmlArea {
+	background: #fff;
 }
 
 
