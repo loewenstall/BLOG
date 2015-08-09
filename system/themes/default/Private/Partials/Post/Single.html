@@ -1,0 +1,16 @@
+<h1>{post.title}</h1>
+<article id="{post.id}">
+	<div class="article__content">
+		<f:format.raw>{post.content}</f:format.raw>
+	</div>
+	<f:render partial="Comments" arguments="{post: post}" />
+	<footer>
+		<span class="article__date"><f:format.date format="d.m.Y">{post.crdate}</f:format.date></span>
+		<p>
+			<a href="/" class="back">Zurück zur Übersicht</a>
+		</p>
+	</footer>
+</article>
+<aside>
+	<p>{post.teaser}</p>
+</aside>

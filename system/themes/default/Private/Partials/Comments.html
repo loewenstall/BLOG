@@ -1,0 +1,12 @@
+<div class="article__comments">
+	<h3>(<f:count>{post.comments}</f:count>) Kommentare</h3>
+	<f:if condition="{post.comments}">
+		<ul class="comments__list">
+		<f:for each="{post.comments}" as="comment">
+			<li>
+				{comment.title}
+			</li>
+		</f:for>
+		</ul>
+	</f:if>
+</div>

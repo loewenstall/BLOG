@@ -1,0 +1,63 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+<div class="content__container">
+	<h1>BLOG posts</h1>
+	<div class="dashboard__module">
+		<h2>Create a new post</h2>
+		<f:if condition="{post.errors}">
+			<h3>Please fill in marked fields.</h3>
+		</f:if>
+
+		<form name="newForm" action="?controller=Post&action=create" method="post">
+			<div class="form__controls">
+				<button type="button">Close</button>
+				<button type="submit" name="save">Save</button>
+				<button type="submit" name="exit">Save & Exit</button>
+			</div>
+			<fieldset>
+				<div class="post__meta">
+					<input type="hidden" name="new_post[id]" value="#NEW#" />
+				</div>
+				<div class="form__row form__row-checkbox">
+					<input type="checkbox" name="new_post[hidden]"{f:if(condition: '{post.hidden} == 1', then: ' checked="checked"')} /> <label>Hidden</label>
+				</div>
+				<div class="form__row"{f:if(condition: '{post.errors.title}', then: ' class="error"')}>
+					<label>Title *</label> <input type="text" class="text" name="new_post[title]" value="{post.title}" />
+				</div>
+				<div class="form__row">
+					<label>URL Short name</label> <input type="text" class="text" name="new_post[shortname]" value="{post.shortname}" />
+				</div>
+				<div class="form__row">
+					<label>State</label>
+					<select class="text" name="new_post[storage]">
+						<option value="draft"{f:if(condition: '{post.storage} == \'draft\'', then: ' selected="selected"')}>Draft</option>
+						<option value="post"{f:if(condition: '{post.storage} == \'post\'', then: ' selected="selected"')}>Post</option>
+						<option value="trash"{f:if(condition: '{post.storage} == \'trash\'', then: ' selected="selected"')}>Trash</option>
+					</select>
+				</div>
+				<div class="form__row">
+					<label>Category</label>
+					<select class="text" name="new_post[category]">
+						<option value="0">No category</option>
+						<f:for each="{categories}" as="category">
+						<option value="{category.id}"{f:if(condition: '{post.category} == {category.id}', then: ' selected="selected"')}>{category.title}</option>
+						</f:for>
+					</select>
+				</div>
+				<div class="form__row">
+					<label>Teaser</label> <textarea name="new_post[teaser]" class="text">{post.teaser}</textarea>
+				</div>
+				<div class="form__row"{f:if(condition: '{post.errors.content} == 1', then: ' class="error"')}>
+					<label>Content *</label> <textarea name="new_post[content]" id="rte" class="text"><f:format.raw>{post.content}</f:format.raw></textarea>
+				</div>
+			</fieldset>
+			<div class="form__controls">
+				<button type="button">Close</button>
+				<button type="submit" name="save">Save</button>
+				<button type="submit" name="exit">Save & Exit</button>
+			</div>
+		</form>
+	</div>
+</div>
+</f:section>

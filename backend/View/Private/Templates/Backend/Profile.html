@@ -1,0 +1,30 @@
+<f:layout name="Backend" />
+
+<f:section name="main">
+<div class="content__container">
+	<h1>Your profile</h1>
+	<div class="dashboard__module">
+		<form name="editForm" action="?Controller=Backend&action=profile&update" method="post">
+			<header>
+				<button type="button">Close</button>
+				<button type="submit" name="save">Save</button>
+				<button type="submit" name="exit">Save & Exit</button>
+			</header>
+			<fieldset>
+				<div class="post__meta">
+					<input type="hidden" name="edit_user[id]" value="{user.id}" />
+				</div>
+				<div class="form__row">
+					<label>Name</label> <input type="text" class="text" name="edit_user[fullname]" value="{user.fullname}" />
+				</div>
+				<div class="form__row">
+					<label>Avatar</label> <input type="text" class="text" name="edit_user[avatar]" value="{user.avatar}" />
+				</div>
+				<div class="form__row" title="Click to change password">
+					<label>Password</label> <input type="password" class="text password__change" name="edit_user[password]" value="something" disabled />
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+</f:section>

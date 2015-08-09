@@ -1,0 +1,11 @@
+<article id="{post.id}">
+	<h2>
+		<a href="index.php?action=show&post={post.id}">{post.title}</a>
+	</h2>
+	<div class="article__content">
+		<p>{post.teaser}</p>
+	</div>
+	<footer>
+		<span class="article__date"><f:format.date format="d.m.Y">{post.crdate}</f:format.date></span>
+	</footer>
+</article>
